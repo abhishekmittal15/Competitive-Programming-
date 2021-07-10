@@ -1,0 +1,2 @@
+Yes
+x_1 x_2 \cdots x_N

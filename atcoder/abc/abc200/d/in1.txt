@@ -1,0 +1,3 @@
+Yes
+x B_1 B_2 \dots B_x
+y C_1 C_2 \dots C_y
