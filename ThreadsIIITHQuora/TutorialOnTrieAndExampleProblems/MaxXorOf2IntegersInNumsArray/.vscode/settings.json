@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "*.rmd": "markdown",
+        "*.tex": "markdown",
+        "*.asm": "asm-intel-x86-generic",
+        "vector": "cpp"
+    }
+}
