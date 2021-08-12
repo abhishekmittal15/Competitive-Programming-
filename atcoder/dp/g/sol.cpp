@@ -23,11 +23,15 @@ signed main(){
         int dist = pq.top().first;
         int u = pq.top().second;
         pq.pop();
+        // cout << u << " " << dist << endl;
         for (int i = 0;i<g[u].size();i++){
-            if(d[g[u][i]]<dist+1){
+            indegree[g[u][i]]--;
+            // cout << g[u][i] << " " << indegree[g[u][i]] << endl;
+            if(d[g[u][i]]<(dist+1)){
                 d[g[u][i]] = dist + 1;
-                pq.push({dist + 1, g[u][i]});
             }
+            if (indegree[g[u][i]] == 0)
+                pq.push({d[g[u][i]], g[u][i]});
         }
     }
     int ans = 0;
