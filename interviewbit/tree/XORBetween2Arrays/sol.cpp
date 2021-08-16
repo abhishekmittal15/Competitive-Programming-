@@ -1,7 +1,7 @@
 #include<iostream>
 #include<vector>
 using namespace std;
-// #define int long long int
+#define int long long int
 struct Node{
     Node *child[2] = {nullptr, nullptr};
 };
@@ -20,39 +20,36 @@ int query(int n,Node* root){
     for (int i = maxBit; i >= 0;i--){
         bool bit = n & (1 << i);
         bool desired = 1 - bit;
-        // cout << bit << " " << desired << endl;
-        cout << ans << endl;
-        if(root->child[desired])
-            ans += (desired << i);
-        else if(root->child[bit])
-            ans += (bit << i);
+        if(root->child[desired]==nullptr){
+            desired = bit;
+        }
+        ans += (desired << i);
+        root = root->child[desired];
     }
     return ans;
 }
-int solve(int *a,int n1,int *b,int n2){
+int solve(vector<int>&a,vector<int>&b){
     Node *root = new Node;
-    cout << "Entered" << endl;
+    int n1=a.size();
+    int n2 = b.size();
     for (int i = 0; i < n1;i++){
         add(a[i], root);
-        cout << "Added " << a[i] << endl;
     }
     int ans = -1;
     for (int i = 0; i < n2;i++){
-        ans = max(ans, query(b[i], root));
-        cout << "Queried " << b[i] << endl;
+        ans = max(ans, b[i]^query(b[i], root));
     }
     return ans;
 }   
 signed main(){
     int n1,n2;
     cin >> n1 >> n2;
-    int a[n1];
-    int b[n2];
+    vector<int> a(n1), b(n2);
     for (int i = 0; i < n1;i++)
         cin >> a[i];
     for (int i = 0; i < n2; i++)
         cin >> b[i];
-    int ans = solve(a, n1, b, n2);
+    int ans = solve(a,b);
     cout << "Answer : " << ans << endl;
     return 0;
 }
