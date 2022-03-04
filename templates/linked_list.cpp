@@ -4,8 +4,8 @@ using namespace std;
 template<class T>
 struct node{
     T data;
-    struct node* prev;
-    struct node* next;
+    struct node<T>* prev;
+    struct node<T>* next;
     node(T val){
         data=val;
         prev=nullptr;
@@ -80,13 +80,9 @@ void linked_list<T>::print(){
 
 int main(){
     int x=5;
-    // struct node<int>* new_node=new node<int>(x);
-    // cout<<new_node->data<<endl;
     linked_list<int> ll(5);
     ll.add_first(6);
     ll.add_last(8);
-    // ll.del_first();
-    // ll.del_last();
     ll.print();
     return 0;
 }
